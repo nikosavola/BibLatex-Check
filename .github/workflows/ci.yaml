@@ -23,3 +23,16 @@ jobs:
             echo "Incorrect number of problems, $N_PROBLEMS instead of 15"
             exit 1
           fi
+
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install pylint
+      - name: Run pylint
+        run: pylint biblatex_check.py
